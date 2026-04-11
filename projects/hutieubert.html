@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuTieuBERT | ACL 2026 Main Conference</title>
+    <meta name="description" content="HuTieuBERT: Morpheme-Aware Transformer for Vietnamese, accepted to ACL 2026 Main Conference (Poster).">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            color: #222;
+            background: #fff;
+            line-height: 1.7;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            width: min(920px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 24px 0 56px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 28px;
+            color: #4b5563;
+            font-weight: 600;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.8rem);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin: 0 0 8px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #4b5563;
+            margin: 0 0 24px;
+        }
+
+        .hero .authors {
+            font-size: 1.15rem;
+            color: #2563eb;
+            margin: 0 0 18px;
+        }
+
+        .hero .affiliations {
+            color: #4b5563;
+            margin: 0 0 18px;
+        }
+
+        .hero .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .hero .note {
+            color: #6b7280;
+            margin: 0;
+        }
+
+        section {
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 0 0 12px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 20px 0 8px;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        ul {
+            margin: 0 0 14px 20px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        figure {
+            margin: 18px 0;
+        }
+
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        pre {
+            overflow-x: auto;
+            background: #f5f5f5;
+            padding: 14px;
+            margin: 14px 0;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        code,
+        pre {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <a class="back-link" href="../index.html#projects">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to portfolio</span>
+        </a>
+
+        <header class="hero">
+            <h1>HuTieuBERT</h1>
+            <p class="subtitle">When Morphology Hides in Plain Sight: Breaking the Isolation in Vietnamese and Beyond</p>
+            <p class="authors">Anh Trac Duc Dinh<sup>1</sup>, Khang Hoang Nhat Vo<sup>3</sup>, Tai Tien Ta<sup>1</sup>, Vinh Cong Doan<sup>1</sup>, Tho Quan<sup>1*</sup></p>
+            <p class="affiliations"><sup>1</sup>Faculty of Computer Science and Engineering, Ho Chi Minh City University of Technology (HCMUT), VNU-HCM, Ho Chi Minh City, Vietnam<br><sup>3</sup>Mohamed bin Zayed University of Artificial Intelligence, Abu Dhabi, UAE</p>
+            <div class="links">
+                <a href="https://github.com/nhatkhangcs/HuTieuBERT" target="_blank" rel="noopener">GitHub</a>
+                <a href="../index.html#latest">Latest</a>
+            </div>
+            <p class="note">Accepted to ACL 2026 Main Conference, poster presentation.</p>
+        </header>
+
+        <section>
+            <h2>Abstract</h2>
+            <p>In isolating languages such as Vietnamese, core morphological structure is encoded not by inflection but by the composition and ordering of monosyllabic morphemes, yet standard Transformer encoders largely overlook this signal. We introduce <strong>HuTieuBERT</strong>, a morpheme-aware Transformer that augments a pretrained Vietnamese encoder with two lightweight inductive biases: (i) <em>Adaptive Boundary-Token Fusion</em>, which integrates BMES-based morpheme boundary embeddings into token representations via a learnable gate, and (ii) a <em>Morpheme-Aware Attention Bias</em>, which injects a fixed structural attention matrix into early self-attention layers while minimally perturbing the pretrained attention geometry. Across a suite of Vietnamese POS, NER, and sentence-level classification benchmarks, HuTieuBERT consistently outperforms strong baselines, with the largest gains on syntactic tasks. Hyperparameter ablations show a broad regime in which structural biases improve accuracy without destabilizing representations. Applying the same design to ChineseBERT (Chinese-BERT-wwm) yields <strong>MAChineseBERT</strong>, which improves F<sub>1</sub> and produces more balanced tag distributions on Chinese POS and NER, suggesting that explicit morpheme-aware attention is a portable and effective strategy for modeling isolating languages.</p>
+        </section>
+
+        <section>
+            <p>This repository implements a morpheme-aware Transformer architecture that enhances pretrained encoders with explicit morphological structure for isolating languages.</p>
+            <p>By introducing two lightweight inductive biases:</p>
+            <ul>
+                <li>Adaptive Boundary-Token Fusion</li>
+                <li>Morpheme-Aware Attention Bias</li>
+            </ul>
+            <p>The model effectively captures compound cohesion and morpheme boundaries that standard Transformers often overlook, while remaining optimized for Vietnamese.</p>
+
+            <figure>
+                <img src="https://raw.githubusercontent.com/nhatkhangcs/HuTieuBERT/main/figures/ReDrawHuTieuBERT.png" alt="Architecture">
+                <figcaption>Architecture · <code>figures/ReDrawHuTieuBERT.png</code></figcaption>
+            </figure>
+
+            <p>The design is portable to other isolating languages like Mandarin Chinese, consistently improving performance on syntactic tasks such as POS tagging and Named Entity Recognition (NER).</p>
+        </section>
+
+        <section>
+            <h2>Adaptive Boundary-Token Fusion</h2>
+
+            <h3>Subword Alignment</h3>
+            <ul>
+                <li>Syncing Labels: This step aligns word-structure tags (BMES) with the smaller sub-units of text created during tokenization:</li>
+                <li>B (Begin): Marks the first syllable or character of a multi-syllable word.</li>
+                <li>M (Middle): Applied to the internal syllables or characters of a multi-syllable word.</li>
+                <li>E (End): Marks the final syllable or character of a multi-syllable word.</li>
+                <li>S (Single): Used for standalone words that consist of only one syllable or character.</li>
+                <li>Maintaining Structure: By expanding these tags, the model ensures that multi-syllable words keep their linguistic meaning even when broken into pieces.</li>
+            </ul>
+
+            <figure>
+                <img src="https://raw.githubusercontent.com/nhatkhangcs/HuTieuBERT/main/figures/alignment.png" alt="Subword Alignment">
+                <figcaption>Subword Alignment · <code>figures/alignment.png</code></figcaption>
+            </figure>
+
+            <h3>Adaptive Interpolation Layer</h3>
+            <ul>
+                <li>Blending Information: This module combines standard word data with specific "boundary" information that marks where words start and end.</li>
+                <li>Smart Filtering: A "gate" automatically decides how much boundary information is needed for each word based on its context.</li>
+                <li>Rich Representation: The result is a more complete digital representation of the text that respects the natural boundaries of the language.</li>
+            </ul>
+
+            <figure>
+                <img src="https://raw.githubusercontent.com/nhatkhangcs/HuTieuBERT/main/figures/embeddings.png" alt="Adaptive Boundary-Token Fusion">
+                <figcaption>Adaptive Boundary-Token Fusion · <code>figures/embeddings.png</code></figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Morpheme-Aware Attention Bias</h2>
+            <p>This module guides the model's focus by injecting a fixed structural prior into the early self-attention layers. It ensures that the "attention" mass respects the natural boundaries of compounds rather than spreading too thin across unrelated words.</p>
+
+            <figure>
+                <img src="https://raw.githubusercontent.com/nhatkhangcs/HuTieuBERT/main/figures/multi_layer_attention_1-2_all.png" alt="Vietnamese attention">
+                <figcaption>Vie · <code>figures/multi_layer_attention_1-2_all.png</code></figcaption>
+            </figure>
+
+            <p>The bias is controlled by a matrix using four key parameters to modulate relationship scores:</p>
+            <ul>
+                <li>Alpha (<code>α</code>): Strengthens focus between tokens that belong to the same compound phrase.</li>
+                <li>Beta (<code>β</code>): Penalizes or "mutes" attention between tokens that belong to different compounds.</li>
+                <li>Gamma (<code>γ</code>): Highlights and adjusts the importance of single-word units.</li>
+                <li>Delta (<code>δ</code>): Controls the strength of a token's focus on itself (self-attention bias).</li>
+            </ul>
+
+            <p>By reweighting these connections, the model maintains a stable internal geometry while gaining a clearer understanding of linguistic structure. This method not only work with Vietnamese but also other Isolating Languages like Mandarin Chinese, Thai...</p>
+
+            <figure>
+                <img src="https://raw.githubusercontent.com/nhatkhangcs/HuTieuBERT/main/figures/machinesebert_attention_1-2_all.png" alt="Chinese attention">
+                <figcaption>Chi · <code>figures/machinesebert_attention_1-2_all.png</code></figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Before Running the Code</h2>
+            <p>HuTieuBERT depends on <strong>VnCoreNLP</strong> for Vietnamese word segmentation. Before running any tokenizer or model example in this repository, please download and set up VnCoreNLP following the official repository: <a href="https://github.com/vncorenlp/VnCoreNLP" target="_blank" rel="noopener">vncorenlp/VnCoreNLP</a>.</p>
+            <p>Recommended setup:</p>
+            <pre><code>pip install py_vncorenlp</code></pre>
+            <pre><code>import py_vncorenlp
+
+py_vncorenlp.download_model(save_dir="/absolute/path/to/vncorenlp")</code></pre>
+            <p>Notes:</p>
+            <ul>
+                <li>Java 1.8 or newer is required by VnCoreNLP.</li>
+                <li>Set <code>vncorenlp_dir</code> to the same directory you used in <code>download_model(...)</code>.</li>
+                <li>The camera-ready paper is not available yet; we will update the README with the final publication details after the conference.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Example Usage</h2>
+            <pre><code>import torch
+import torch.nn as nn
+from transformers.models.roberta.modeling_roberta import RobertaModel, RobertaEncoder, RobertaLayer
+from transformers import RobertaConfig
+
+from model.tokenizer import MorphemeAwareTokenizer
+from model.embeddings import BoundaryAwareEmbeddings
+from model.model import MorphemeAwareRobertaModel, MorphemeAwareRobertaForSequenceClassification
+
+tokenizer = MorphemeAwareTokenizer.from_pretrained(
+    "ducanhdinh/HuTieuBert",
+    vncorenlp_dir="/content/vncorenlp",
+    return_tensors="pt"
+)
+
+config = RobertaConfig.from_pretrained("ducanhdinh/HuTieuBert")
+
+# Applied Structural Bias Matrix to Layer 1 and 2 full 12 heads
+target_heads = {
+    1: list(range(config.num_attention_heads)),
+    2: list(range(config.num_attention_heads)),
+}
+
+model = MorphemeAwareRobertaForSequenceClassification(
+    config,
+    num_labels=label_num,
+    target_heads=target_heads,
+    alpha=0.5,
+    beta=-0.3,
+    gamma=0.0,
+    delta=0.0,
+)
+
+model.roberta = MorphemeAwareRobertaModel.from_pretrained(
+    "ducanhdinh/HuTieuBert",
+    target_heads=target_heads,
+    alpha=0.5,
+    beta=-0.3,
+    gamma=0.0,
+    delta=0.0,
+)
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)</code></pre>
+        </section>
+
+        <section>
+            <h2>Acknowledgement</h2>
+
+            <h3>Paper (Coming Soon)</h3>
+            <p>The full paper describing our method and experimental results will be released soon. If you find this work useful, please consider citing our paper:</p>
+            <pre><code>@article{,
+  title   = {Coming Soon},
+  author  = {Coming Soon},
+  journal = {Coming Soon},
+  year    = {Coming Soon},
+}</code></pre>
+
+            <h3>Use of External Segmentation</h3>
+            <p>This work makes use of <strong>VnCoreNLP</strong> - a Vietnamese natural language processing toolkit.</p>
+            <p>Copyright (C) 2018-2019 VnCoreNLP<br>
+            This program is free software: you can redistribute it and/or modify<br>
+            it under the terms of the GNU General Public License as published by<br>
+            the Free Software Foundation, either version 3 of the License, or<br>
+            (at your option) any later version.</p>
+            <p>This program is distributed in the hope that it will be useful,<br>
+            but <strong>WITHOUT ANY WARRANTY</strong>; without even the implied warranty of<br>
+            <strong>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</strong><br>
+            See the <a href="https://www.gnu.org/licenses/" target="_blank" rel="noopener">GNU General Public License</a> for more details.</p>
+            <p>Repository: <a href="https://github.com/vncorenlp/VnCoreNLP" target="_blank" rel="noopener">https://github.com/vncorenlp/VnCoreNLP</a></p>
+        </section>
+    </div>
+</body>
+</html>

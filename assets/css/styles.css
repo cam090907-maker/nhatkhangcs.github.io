@@ -501,46 +501,25 @@ body.dark-mode .scroll-to-top:hover {
 /* Latest Section */
 .latest {
     padding: 80px 0;
-    background: #f8f9fa;
-}
-
-.latest-card {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    padding: 1.5rem;
     background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e9ecef;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
-.latest-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
-    flex-shrink: 0;
+.latest-list {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 1100px;
 }
 
-.latest-icon i {
-    font-size: 1.2rem;
+.latest-line {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #222;
 }
 
-.latest-content h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.latest-content p {
-    color: #666;
-    line-height: 1.6;
+.latest-date {
+    font-weight: 500;
+    color: #111;
 }
 
 /* Dark Mode - Latest */
@@ -548,18 +527,12 @@ body.dark-mode .latest {
     background: #0f0f0f;
 }
 
-body.dark-mode .latest-card {
-    background: #1a1a1a;
-    border-color: #333;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-body.dark-mode .latest-content h3 {
+body.dark-mode .latest-line {
     color: #e8e8e8;
 }
 
-body.dark-mode .latest-content p {
-    color: #b8b8b8;
+body.dark-mode .latest-date {
+    color: #e8e8e8;
 }
 
 /* Navigation */
@@ -1169,6 +1142,12 @@ body.dark-mode .latest-content p {
 
 .project-link:hover {
     color: #764ba2;
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 /* Educational Resources Section */
